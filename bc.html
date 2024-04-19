@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Starry Sky - Night Sky c. 2575–c. 2465 BCE</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+  }
+
+  /* Create a starry background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('skyimage.jpg'); /* Night sky image */
+    background-size: cover;
+    z-index: -1;
+  }
+
+  .dot {
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out; /* Add transition for zoom motion */
+    z-index: 1;
+  }
+
+  .dot:hover {
+    transform: scale(1.1);
+  }
+
+  .info-container {
+    position: fixed;
+    top: 50%;
+    right: 20px; /* Adjust right offset as needed */
+    transform: translateY(-50%);
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    display: none;
+    max-width: 300px; /* Adjust max-width as needed */
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add box shadow for depth */
+  }
+
+  .info-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #000; /* Set info box title text color */
+  }
+
+  .info-text {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000; /* Set info box text color */
+  }
+
+  .info-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: #000;
+  }
+
+  .info-close:hover {
+    color: #f00;
+  }
+
+  #date-info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 18px;
+    font-style: italic;
+    color: #ccc;
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #ccc;
+  }
+
+  .center-link {
+    position: fixed;
+    top: 20px; /* Adjust top offset for desired position */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px; /* Adjust font size to make it smaller */
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 10px; /* Adjust padding for smaller size */
+    border: none; /* Remove the border */
+    background-color: transparent; /* Make background transparent */
+    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out; /* Add color transition */
+    z-index: 1000;
+}
+
+.center-link:hover {
+    color: #ddd; /* Change color on hover */
+    transform: translate(-50%, -3%) scale(1.05); /* Adjust hover transformation */
+}
+</style>
+</head>
+<body>
+<div id="date-info">c. 2575–c. 2465 BCE</div>
+<div class="info-container" id="info-box">
+  <div class="info-close" onclick="toggleInfoBox()">&#x2715;</div>
+  <div class="info-title">Star Information</div>
+  <div class="info-text">Click on a star or constellation to learn more about it.</div>
+</div>
+<div class="footer">
+  <p>This website showcases stars and constellations visible during the construction of the Great Pyramids of Giza, offering insights into ancient astronomy and mythology.</p>
+  <p>&copy; 2024 NAC STEMFAIR PROJECT. All rights reserved.</p>
+</div>
+<a href="index.html" class="center-link">Explore More</a>
+<script>
+  function toggleInfoBox() {
+    const infoBox = document.getElementById('info-box');
+    infoBox.style.display = infoBox.style.display === 'block' ? 'none' : 'block';
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const starData = [
+    {
+    name: 'Altair',
+    description: 'Altair is one of the stars in the Summer Triangle and is the brightest star in the constellation Aquila.',
+    fact: 'In ancient Egypt, Altair was associated with the falcon-headed god Horus, symbolizing protection, kingship, and divine authority.',
+    position: { x: 300, y: 300 } // Example position coordinates
+  },
+  {
+    name: 'Vega',
+    description: 'Vega is one of the brightest stars in the sky and is part of the constellation Lyra.',
+    fact: 'Ancient Egyptians revered Vega as the star of the goddess Isis, embodying love, healing, and magical powers.',
+    position: { x: 700, y: 300 } // Example position coordinates
+  },
+  {
+    name: 'Deneb',
+    description: 'Deneb is one of the brightest stars in the constellation Cygnus and is part of the Summer Triangle.',
+    fact: 'Deneb held cosmic significance in ancient Egypt, representing the celestial pathway of the sun god Ra during the night sky journey.',
+    position: { x: 800, y: 700 } // Example position coordinates
+  },
+  {
+    name: 'Alnilam',
+    position: { x: 400, y: 200 },
+    description: 'Alnilam is one of the stars in Orion\'s Belt, representing Osiris\'s heart in ancient Egyptian mythology. It was associated with resurrection and the journey to the afterlife.',
+    fact: 'Ancient Egyptians believed that the alignment of Alnilam with other stars in Orion\'s Belt had mystical significance during religious ceremonies.'
+  },
+  // Add more stars here
+  {
+    name: 'Procyon',
+    description: 'Procyon is the brightest star in the constellation Canis Minor and is part of the winter triangle.',
+    fact: 'Procyon was linked to Anubis, the jackal-headed god of mummification and the afterlife, in ancient Egyptian beliefs.',
+    position: { x: 400, y: 800 } // Example position coordinates
+  },
+  {
+    name: 'Regulus',
+    description: 'Regulus is the brightest star in the constellation Leo and is one of the brightest stars in the night sky.',
+    fact: 'In ancient Egypt, Regulus symbolized the divine power of the sun god Ra, representing courage, strength, and royal authority.',
+    position: { x: 200, y: 200 } // Example position coordinates
+  },
+  {
+    name: 'Spica',
+    description: 'Spica is the brightest star in the constellation Virgo and is a binary star system.',
+    fact: 'Spica held celestial significance in ancient Egypt, associated with the goddess Ma\'at, symbolizing cosmic order, justice, and balance.',
+    position: { x: 900, y: 350 } // Example position coordinates
+  },
+  {
+    name: 'Sirius',
+    position: { x: 1200, y: 500 },
+    description: 'Sirius, also known as the Dog Star, was highly significant in ancient Egyptian religion, often associated with the goddess Isis and believed to bring the Nile floods that were crucial for agriculture.',
+    fact: 'Ancient Egyptians based their calendar on the heliacal rising of Sirius, aligning it with the start of the inundation season.'
+  },
+  {
+    name: 'Canopus',
+    position: { x: 500, y: 300 },
+    description: 'Canopus was revered by ancient Egyptians as a star associated with Osiris, the god of the afterlife and rebirth. It held religious significance and was linked to the myth of Osiris and Isis.',
+    fact: 'The city of Canopus in ancient Egypt, located in the Nile Delta, may have been named after this prominent star.'
+  },
+  {
+    name: 'Aldebaran',
+    position: { x: 600, y: 400 },
+    description: 'Aldebaran, known as the Eye of Taurus, was important in ancient Egyptian astronomy and mythology. It was linked to the goddess Hathor, often represented as a celestial cow.',
+    fact: 'Ancient Egyptians associated Aldebaran with the bull cult and the deity Ptah, symbolizing strength and creation.'
+  },
+  {
+  name: 'Antares',
+  position: { x: 300, y: 500 },
+  description: 'Antares, a red supergiant in Scorpius, held significance in ancient Egyptian astrology, representing the Scorpion goddess Serqet. It symbolized protection and healing.',
+  fact: 'The rising of Antares in conjunction with the Sun was observed by ancient Egyptians for astrological predictions and agricultural timing.'
+},
+];
+
+
+const constellationData = [
+  {
+    name: 'Cassiopeia',
+    description: 'Cassiopeia is a constellation named after the queen in Greek mythology.',
+    fact: 'In ancient Egypt, Cassiopeia represented the celestial throne of Isis, highlighting divine femininity, wisdom, and maternal care.',
+    position: { x: 150, y: 350 } // Example position coordinates
+  },
+  {
+    name: 'Hydra',
+    description: 'Hydra is the largest constellation and is often depicted as a water snake.',
+    fact: 'Ancient Egyptians associated Hydra with the Nile River, symbolizing the life-giving waters, fertility, and agricultural abundance.',
+    position: { x: 900, y: 200 } // Example position coordinates
+  },
+  {
+    name: 'Corvus',
+    description: 'Corvus is a small constellation representing a crow or raven.',
+    fact: 'In ancient Egypt, Corvus was linked to the god Horus, manifesting as a falcon, symbolizing vigilance, protection, and divine insight.',
+    position: { x: 400, y: 900 } // Example position coordinates
+  },
+  // Add more constellations here
+  {
+    name: 'Sagitta',
+    description: 'Sagitta is a small constellation named after the arrow.',
+    fact: 'Sagitta held symbolic significance in ancient Egypt as the divine arrow of the god Set, representing swift justice and protection against chaos.',
+    position: { x: 800, y: 400 } // Example position coordinates
+  },
+  {
+    name: 'Draco',
+    description: 'Draco is a constellation representing a dragon or serpent.',
+    fact: 'Ancient Egyptians associated Draco with Apep, the serpent of chaos, symbolizing the eternal struggle between order (Ma\'at) and chaos (Isfet) in creation myths.',
+    position: { x: 300, y: 800 } // Example position coordinates
+  },
+  {
+    name: 'Centaurus',
+    description: 'Centaurus is a constellation representing a centaur.',
+    fact: 'Centaurus was linked to the celestial messenger in ancient Egypt, symbolizing cosmic journeys, knowledge, and the exchange of wisdom between realms.',
+    position: { x: 700, y: 100 } // Example position coordinates
+  },
+  {
+    name: 'Orion',
+    position: { x: 600, y: 300 },
+    description: 'Orion, the Hunter, was a prominent constellation in ancient Egyptian astronomy and mythology. It was associated with Osiris, the god of resurrection and the afterlife.',
+    fact: 'The three stars forming Orion\'s Belt were considered a sacred symbol representing Osiris\'s belt or the ladder to heaven in ancient Egyptian beliefs.'
+  },
+  {
+    name: 'Pleiades',
+    position: { x: 400, y: 500 },
+    description: 'The Pleiades, also known as the Seven Sisters, held significance in ancient Egyptian celestial observations. They were linked to the goddess Hathor and were part of agricultural calendars.',
+    fact: 'The heliacal rising of the Pleiades marked the beginning of the Egyptian year and the critical time for planting crops.'
+  },
+  {
+    name: 'Ursa Major',
+    position: { x: 600, y: 300 },
+    description: 'Ursa Major, the Great Bear, played a role in ancient Egyptian astronomy. It was associated with the goddess Neith and had symbolic importance in religious and cosmological beliefs.',
+    fact: 'The orientation of Ursa Major was used by ancient Egyptians for celestial navigation, guiding them in various cultural practices and ceremonies.'
+  },
+  {
+    name: 'Cygnus',
+    position: { x: 570, y: 470 },
+    description: 'Cygnus, the Swan, was recognized in ancient Egypt and associated with the goddess Isis, often depicted with wings. It symbolized magic, protection, and motherhood.',
+    fact: 'Ancient Egyptians believed that the stars of Cygnus represented the wings of Isis, providing guidance and spiritual support.'
+  },
+  {
+    name: 'Aries',
+    position: { x: 1060, y: 300 },
+    description: 'Aries, the Ram, played a role in ancient Egyptian astrology, symbolizing fertility, new beginnings, and the god Amun-Ra, the king of the gods.',
+    fact: 'During the annual festival of Amun-Ra, the constellation Aries was observed as a celestial representation of Amun\'s creative power.'
+  },
+  {
+    name: 'Gemini',
+    position: { x: 700, y: 490 },
+    description: 'Gemini, the Twins, was significant in ancient Egyptian culture, associated with the divine twins Horus and Set, representing balance and duality in life.',
+    fact: 'The constellation Gemini was linked to the concept of harmony and conflict resolution, reflecting the balance between opposing forces in the universe.'
+  },
+];
+
+    starData.forEach(star => {
+      const dot = document.createElement('div');
+      dot.className = 'dot';
+      dot.style.left = star.position.x + 'px';
+      dot.style.top = star.position.y + 'px';
+      dot.style.width = '8px'; // Adjust size for star dots
+      dot.style.height = '8px'; // Adjust size for star dots
+      dot.style.backgroundColor = '#fff'; // Set color
+
+      dot.addEventListener('mouseenter', () => {
+        const starName = document.createElement('div');
+        starName.textContent = star.name;
+        starName.className = 'star-name';
+        starName.style.position = 'absolute';
+        starName.style.top = star.position.y - 20 + 'px';
+        starName.style.left = star.position.x - 20 + 'px';
+        starName.style.color = '#fff';
+        document.body.appendChild(starName);
+      });
+
+      dot.addEventListener('mouseleave', () => {
+        const starName = document.querySelector('.star-name');
+        if (starName) starName.remove();
+      });
+
+      dot.addEventListener('click', () => {
+        const infoBox = document.getElementById('info-box');
+        const infoTitle = infoBox.querySelector('.info-title');
+        const infoText = infoBox.querySelector('.info-text');
+
+        infoTitle.textContent = star.name;
+        infoText.innerHTML = `<strong>${star.description}</strong><br><br><em>Fact:</em> ${star.fact}`;
+        toggleInfoBox();
+
+        // Add zoom effect when a dot is clicked
+        dot.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+          dot.style.transform = 'scale(1)';
+        }, 200); // Reset scale after 200ms
+      });
+
+      document.body.appendChild(dot);
+    });
+
+    constellationData.forEach(constellation => {
+      const dot = document.createElement('div');
+      dot.className = 'dot';
+      dot.style.left = constellation.position.x + 'px';
+      dot.style.top = constellation.position.y + 'px';
+      dot.style.width = '15px'; // Adjust size for constellation dots
+      dot.style.height = '15px'; // Adjust size for constellation dots
+      dot.style.backgroundColor = '#A020F0'; // Set color for constellation dots
+      dot.style.borderRadius = '50%'; // Make constellation dots round
+
+      dot.addEventListener('mouseenter', () => {
+        const constellationName = document.createElement('div');
+        constellationName.textContent = constellation.name;
+        constellationName.className = 'constellation-name';
+        constellationName.style.position = 'absolute';
+        constellationName.style.top = constellation.position.y - 20 + 'px';
+        constellationName.style.left = constellation.position.x - 20 + 'px';
+        constellationName.style.color = '#fff';
+        document.body.appendChild(constellationName);
+      });
+
+      dot.addEventListener('mouseleave', () => {
+        const constellationName = document.querySelector('.constellation-name');
+        if (constellationName) constellationName.remove();
+      });
+
+      dot.addEventListener('click', () => {
+        const infoBox = document.getElementById('info-box');
+        const infoTitle = infoBox.querySelector('.info-title');
+        const infoText = infoBox.querySelector('.info-text');
+
+        infoTitle.textContent = constellation.name;
+        infoText.innerHTML = `<strong>${constellation.description}</strong><br><br><em>Fact:</em> ${constellation.fact}`;
+        toggleInfoBox();
+
+        // Add zoom effect when a constellation dot is clicked
+        dot.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+          dot.style.transform = 'scale(1)';
+        }, 200); // Reset scale after 200ms
+      });
+
+      document.body.appendChild(dot);
+    });
+  });
+</script>
+</body>
+</html>
